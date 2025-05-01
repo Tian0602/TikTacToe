@@ -15,6 +15,7 @@ class GameState: ObservableObject
     @Published var cScore = 0
     @Published var showAlert = false
     @Published var alertMessage = "Draw"
+    @Published var startTurn = Tile.Cross
     
     init()
     {
@@ -114,5 +115,7 @@ class GameState: ObservableObject
             newBoard.append(row)
         }
         board = newBoard
+        turn = startTurn == Tile.Cross ? Tile.Naught : Tile.Cross
+        startTurn = turn
     }
 }
