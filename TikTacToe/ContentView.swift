@@ -50,14 +50,13 @@ struct ContentView: View {
         }
         .background(Color.black)
         .padding()
-        .alert(isPresented: $gameState.showAlert)
-        {
-            Alert(title: Text(gameState.alertMessage),
-                  dismissButton: .default(Text("Okay"))
-                  {
-                    gameState.resetBoard()
-            })
+        .alert("Game Over", isPresented: $gameState.showAlert) {
+            Button("Play Again", action: gameState.resetBoard)
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text(gameState.alertMessage)
         }
+        
         
         Text(String(format: "Naughts: %d", gameState.nScore))
             .font(.title)
